@@ -1,14 +1,23 @@
 import vue from '@vitejs/plugin-vue'
 import vuetify from 'vite-plugin-vuetify'
+import { defineConfig, loadEnv } from 'vite'
 
-// https://vitejs.dev/config/
-export default {
-  plugins: [
-    vue(),
-    vuetify(),
+export default defineConfig(({ mode }) => {
+  
+  const env = loadEnv(mode, process.cwd(), '')
+  return {
+
+    define: {
+      __APP_ENV__: JSON.stringify(env.APP_ENV)
+    },
+    plugins: [
+      vue(),
+      vuetify(),
     ],
-  resolve: {
+    resolve: {
+      
+    },
+    build: { chunkSizeWarningLimit: 1600, }
+  } 
 
-  },
-  build: { chunkSizeWarningLimit: 1600, }
-}
+})

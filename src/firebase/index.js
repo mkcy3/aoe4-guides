@@ -36,12 +36,12 @@ import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 import { getFunctions } from "firebase/functions";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDPH5DcZAte-uY0L6NNSl0FFYcNttqcVBc",
-  authDomain: "aoe4-guides-dev.firebaseapp.com",
-  projectId: "aoe4-guides-dev",
-  storageBucket: "aoe4-guides-dev.appspot.com",
-  messagingSenderId: "409549146868",
-  appId: "1:409549146868:web:ed7eb462db0afffa51aca1",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGE_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
@@ -51,7 +51,7 @@ const functions = getFunctions(app)
 
 self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
 const appCheck = initializeAppCheck(app, {
-  provider: new ReCaptchaV3Provider("6Lc0i0QlAAAAAIMMnWFd9yNtssKCmCuxodeiAjej"),
+  provider: new ReCaptchaV3Provider(import.meta.env.VITE_RECAPTCHA_KEY),
   isTokenAutoRefreshEnabled: true,
 });
 
